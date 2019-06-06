@@ -2,6 +2,7 @@ public class CartaNumerica extends Carta {
     public int numero;
 
     public CartaNumerica(String cor, int numero) {
+        super(cor);
         this.numero = numero;
     }
 

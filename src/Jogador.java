@@ -1,4 +1,14 @@
-package PACKAGE_NAME;
+public class Jogador extends Mao{
+    String nome;
+    public Jogador(String nome) {
+        this.nome = nome;
+    }
 
-public class Jogador {
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }
