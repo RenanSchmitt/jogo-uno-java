@@ -1,18 +1,20 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-public class BaralhoUno {
-    Carta baralho[] = new Carta[100];
+public class Pilha {
+    List<Carta> pilha = new ArrayList();
 
     protected void criaBaralho(){
         int num = 0, i, cont = 0;
         for (i = 0; i < 100; i++){
             if(i < 23) {
                 if(num<=9){
-                    baralho[i] = new CartaNumerica("Verde",num );
+                    pilha.add( new CartaNumerica("Verde",num ));
                 }else{
-                    baralho[i] = new CartaEfeito("Verde","+2" );
+                    pilha.add( new CartaEfeito("Verde","+2" ));
                     i++;
-                    baralho[i] = new CartaEfeito("Verde","Pular" );
+                    pilha.add( new CartaEfeito("Verde","Pular" ));
                     cont++;
                 }
                 cont++;
@@ -28,11 +30,11 @@ public class BaralhoUno {
                     num = 0;
                 }
                 if(num<=9){
-                    baralho[i] = new CartaNumerica("Amarelo",num );
+                    pilha.add( new CartaNumerica("Amarelo",num ));
                 }else{
-                    baralho[i] = new CartaEfeito("Amarelo","+2" );
+                    pilha.add( new CartaEfeito("Amarelo","+2" ));
                     i++;
-                    baralho[i] = new CartaEfeito("Amarelo","Pular" );
+                    pilha.add( new CartaEfeito("Amarelo","Pular" ));
                     cont++;
                 }
                 cont++;
@@ -48,11 +50,11 @@ public class BaralhoUno {
                     num = 0;
                 }
                 if(num<=9){
-                    baralho[i] = new CartaNumerica("Vermelho",num );
+                    pilha.add( new CartaNumerica("Vermelho",num ));
                 }else{
-                    baralho[i] = new CartaEfeito("Vermelho","+2" );
+                    pilha.add( new CartaEfeito("Vermelho","+2" ));
                     i++;
-                    baralho[i] = new CartaEfeito("Vermelho","Pular" );
+                    pilha.add( new CartaEfeito("Vermelho","Pular" ));
                     cont++;
                 }
                 cont++;
@@ -68,11 +70,11 @@ public class BaralhoUno {
                     num = 0;
                 }
                 if(num<=9){
-                    baralho[i] = new CartaNumerica("Azul",num );
+                    pilha.add( new CartaNumerica("Azul",num ));
                 }else{
-                    baralho[i] = new CartaEfeito("Azul","+2" );
+                    pilha.add( new CartaEfeito("Azul","+2" ));
                     i++;
-                    baralho[i] = new CartaEfeito("Azul","Pular" );
+                    pilha.add( new CartaEfeito("Azul","Pular" ));
                     cont++;
                 }
                 cont++;
@@ -85,35 +87,62 @@ public class BaralhoUno {
                 }
             }else{
                 if(cont < 4){
-                    baralho[i] = new CartaCoringa("MudaCor");
+                    pilha.add( new CartaCoringa("MudaCor"));
                     cont++;
                 }else{
-                    baralho[i] = new CartaCoringa("+4");
+                    pilha.add( new CartaCoringa("+4"));
                 }
             }
 
         }
     }
-
+    public void addCarta(Carta carta){
+        pilha.add(carta);
+    }
+    public void resetaBaralho(){
+        pilha.clear();
+    }
     protected void embaralhaBaralho(){
         Carta aux, aux2;
         int x, i;
         Random sort = new Random();
+        int size = pilha.size();
+        for(i= 0; i < size; i++){
 
-        for(i= 0; i < 100; i++){
-
-            x = sort.nextInt(100);
-            aux = baralho[x];
-            aux2 = baralho[i];
-            baralho[i] = aux;
-            baralho[x] = aux2;
+            x = sort.nextInt(size);
+            aux = pilha.get(x);
+            aux2 = pilha.get(i);
+            pilha.set(i, aux);
+            pilha.set(x, aux2);
         }
     }
     public Carta pegaCarta(int num){
-        return baralho[num];
+        int size = pilha.size();
+        if(size <= 0){
+            return null;
+        }else if( num < size ){
+
+        }
+        Carta aux = pilha.get(num);
+        pilha.remove(num);
+        return aux;
+    }
+
+    public Carta pegaCarta(){
+        int size = pilha.size();
+        if( size <= 0){
+            return null;
+        }
+        Carta aux = pilha.get(size - 1);
+        pilha.remove(size - 1);
+        return aux;
+    }
+
+    public int sizeoff(){
+        return pilha.size();
     }
 
     public String olhaCarta(int num){
-        return baralho[num].toString();
+        return pilha.get(num).toString();
     }
 }
