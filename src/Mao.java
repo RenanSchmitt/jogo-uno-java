@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Mao {
-    List<Carta> mao  = new ArrayList<Carta>();
+    List<Carta> mao  = new ArrayList();
 
     protected void compra(Carta carta){
         mao.add(carta);
@@ -12,7 +12,15 @@ public class Mao {
             System.out.println(mao.get(i));
         }
     }
-    protected void jogaCarta(Carta carta){
+    protected Carta jogaCarta(Carta carta){
         mao.remove(carta);
+        return carta;
+    }
+
+    protected Carta jogaCarta(int index) {
+
+        Carta aux = mao.get(index);
+        mao.remove(index);
+        return aux;
     }
 }
