@@ -7,11 +7,14 @@ public class Mao {
     protected void compra(Carta carta){
         mao.add(carta);
     }
-    protected void verMao(){
+    protected void printMao(){
         for(int i = 0; i < mao.size();i++){
             System.out.println("[" + i + "]" + mao.get(i) + "[" + i + "]");
         }
         System.out.println();
+    }
+    protected Mao verMao(){
+        return this;
     }
     protected Carta verCarta(int index){
         return mao.get(index);
