@@ -142,7 +142,19 @@ public class Pilha {
         return pilha.size();
     }
 
-    public String olhaCarta(int num){
-        return pilha.get(num).toString();
+    public String olhaCartaString(int index){
+        return pilha.get(index).toString();
+    }
+
+    public Carta olhaCarta(int index){
+        return pilha.get(index);
+    }
+    public Carta olhaCarta(){
+        int size = pilha.size();
+        if( size <= 0){
+            return null;
+        }
+        Carta aux = pilha.get(size - 1);
+        return aux;
     }
 }

@@ -1,7 +1,10 @@
 public class CartaCoringa extends Carta {
     public String tipo;
 
+
+
     public CartaCoringa(String tipo){
+        super("null");
         this.tipo = tipo;
     }
 
